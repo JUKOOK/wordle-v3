@@ -1,18 +1,31 @@
-import WORDLIST from "./word-list";
 import { getRandomNumber } from "../utils";
+import WORDLIST from "./word-list";
+
+const getWordList = (letters) => {
+  switch (letters) {
+    case 4:
+      return WORDLIST.WORD4;
+    case 5:
+      return WORDLIST.WORD5;
+    case 6:
+      return WORDLIST.WORD6;
+  }
+};
 
 class WordleManager {
-  constructor() {
-    const length = WORDLIST.WORD5.length;
-    this.answer = WORDLIST.WORD5[getRandomNumber(length)]; // 문제 선정
+  constructor(letters) {
+    const wordList = getWordList(letters);
+    const randomIdx = getRandomNumber(wordList.length);
+    this.letters = letters;
+    this.answer = wordList[randomIdx];
+    this.answerChars = this.answer.split("");
   }
 
-  checkResult(inputString) {
-    const answerChars = this.answer.split(""); // ['a', 'p', 'p', 'l', 'e']
-    const inputChars = inputString.split(""); // [ ] 5개짜리 알파벳
+  getResults(inputChars) {
+    const answerChars = this.answer.split("");
 
     return inputChars.map((char, idx) => {
-      if (char === answerChars[idx]) return "currect";
+      if (char === answerChars[idx]) return "correct";
       else if (answerChars.includes(char)) return "other";
       else return "none";
     });

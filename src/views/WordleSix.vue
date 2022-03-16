@@ -21,7 +21,7 @@ import InputLine from "../components/InputLine.vue";
 import AnswerSheet from "../components/AnswerSheet.vue";
 
 const ROWS = 5;
-const COLUMNS = 5;
+const COLUMNS = 6;
 
 const wordle = new WordleManager(COLUMNS);
 const isGameOver = ref(false);
@@ -37,7 +37,7 @@ const checkGameOver = (idx, isSuccess) => {
 
 <style lang="scss" scoped>
 .wordle-five {
-  width: 416px; // 64 * 5 + 24 * 4
+  width: 474px; // 64 * 6 + 18 * 5
 }
 
 .wordle-tiles {

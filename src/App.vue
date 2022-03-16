@@ -1,25 +1,25 @@
 <template>
-  <WordleFive />
+  <WordleNav />
+  <div class="wordle-board">
+    <!-- <WordleFour /> -->
+    <WordleFive />
+    <!-- <WordleSix /> -->
+    <!-- <router-view /> -->
+  </div>
 </template>
 
-<script>
+<script setup>
+import WordleNav from "./components/WordleNav.vue";
+// import WordleFour from "./views/WordleFour.vue";
 import WordleFive from "./views/WordleFive.vue";
-
-export default {
-  name: "App",
-  components: {
-    WordleFive,
-  },
-};
+// import WordleSix from "./views/WordleSix.vue";
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss" scoped>
+.wordle-board {
+  height: calc(100% - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
