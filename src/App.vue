@@ -4,7 +4,6 @@
     <!-- <WordleFour /> -->
     <WordleFive />
     <!-- <WordleSix /> -->
-    <!-- <router-view /> -->
   </div>
 </template>
 
@@ -21,5 +20,6 @@ import WordleFive from "./views/WordleFive.vue";
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 </style>
