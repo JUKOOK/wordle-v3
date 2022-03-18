@@ -1,0 +1,105 @@
+<template>
+  <div class="input-line">
+    <span class="obtainable-point">{{ obtainablePoint }}점</span>
+    <InputBox
+      v-for="(box, idx) in inputBoxes"
+      :key="idx + 1"
+      :box="box"
+      @updated="(char) => updateBoxChar(idx, char)"
+      @cleared="clearBoxChar(idx)"
+      @submit="submitAnswer(idx)"
+    />
+  </div>
+</template>
+
+<script>
+import { reactive } from "vue";
+
+import InputBox from "./InputBox.vue";
+
+/**
+ * slot 구성
+ * [
+ *   {
+ *     slot: Number // 1 ~ columns
+ *     char: String // one Character of InputBox
+ *     disabled: Boolean // true or false
+ *     result: String // 'currect-position', 'other-position', 'not-include'
+ *   }
+ *   ...
+ * ]
+ *
+ */
+
+export default {
+  props: {
+    wordle: {
+      type: Object,
+      requred: true,
+    },
+    columns: {
+      type: Number,
+      requred: true,
+    },
+  },
+  components: {
+    InputBox,
+  },
+  setup(props, { emit }) {
+    const initializeBoxes = () => {
+      const arr = [];
+      for (let slot = 1; slot <= props.columns; slot++) {
+        arr.push({
+          slot,
+          char: "",
+          disabled: false,
+          result: "",
+        });
+      }
+      return arr;
+    };
+
+    const inputBoxes = reactive(initializeBoxes());
+
+    function updateBoxChar(idx, char) {
+      if (inputBoxes[idx].char.length) return;
+      inputBoxes[idx].char = char;
+    }
+    function clearBoxChar(idx) {
+      inputBoxes[idx].char = "";
+    }
+    function submitAnswer(idx) {
+      if (props.columns !== idx + 1) return;
+      const submitChars = inputBoxes.map((box) => box.char);
+      const results = props.wordle.getResults(submitChars);
+      for (const idx in inputBoxes) {
+        inputBoxes[idx].disabled = true;
+        inputBoxes[idx].result = results[idx];
+      }
+      const isSuccess = results.every(
+        (result) => result === "currect-position"
+      );
+      emit("result-displayed", isSuccess);
+    }
+
+    return { inputBoxes, updateBoxChar, clearBoxChar, submitAnswer };
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.input-line {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.input-line .obtainable-point {
+  position: absolute;
+  font-size: 28px;
+  color: #fff;
+  top: 50%;
+  left: -56px;
+  transform: translate(0, -50%);
+}
+</style>
