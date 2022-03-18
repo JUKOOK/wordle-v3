@@ -1,18 +1,11 @@
 <template>
   <div class="display-point">
     <h2 class="title">점수</h2>
-    <p class="point">{{ pointStore.point }}</p>
-    <!-- <p class="point">{{ point }}</p> -->
+    <p class="point">0</p>
   </div>
 </template>
 
-<script setup>
-import { usePointStore } from "../store";
-// import { storeToRefs } from "pinia";
-
-const pointStore = usePointStore();
-// const { point } = storeToRefs(pointStore);
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 .display-point {

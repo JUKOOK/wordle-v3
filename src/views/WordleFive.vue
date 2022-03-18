@@ -12,7 +12,7 @@
       />
     </div>
     <AnswerSheet :is-game-over="isGameOver" :wordle="wordle" />
-    <!-- <DisplayPoint /> -->
+    <DisplayPoint />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ import WordleManager from "../core/wordle-manager.js";
 
 import InputLine from "../components/InputLine.vue";
 import AnswerSheet from "../components/AnswerSheet.vue";
-// import DisplayPoint from "../components/DisplayPoint.vue";
+import DisplayPoint from "../components/DisplayPoint.vue";
 
 const ROWS = 5;
 const COLUMNS = 5;
