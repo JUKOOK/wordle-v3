@@ -1,11 +1,16 @@
 <template>
   <div class="display-point">
     <h2 class="title">점수</h2>
-    <p class="point">0</p>
+    <p class="point">{{ point }}</p>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { usePointStore } from "../pointer";
+import { storeToRefs } from "pinia";
+
+const { point } = storeToRefs(usePointStore());
+</script>
 
 <style lang="scss" scoped>
 .display-point {

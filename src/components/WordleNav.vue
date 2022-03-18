@@ -1,40 +1,40 @@
 <template>
   <nav class="wordle-nav">
     <h1 class="game-title">Wordle</h1>
-    <!-- <div class="btns-wrap">
+    <div class="btns-wrap">
       <button class="btn-route" @click="routePage(firstTo.next)">
         {{ firstTo.text }}
       </button>
       <button class="btn-route" @click="routePage(secondTo.next)">
         {{ secondTo.text }}
       </button>
-    </div> -->
+    </div>
   </nav>
 </template>
 
 <script setup>
-// import { computed } from "vue";
-// import { useRouter, useRoute } from "vue-router";
+import { computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
-// const router = useRouter();
-// const route = useRoute();
+const router = useRouter();
+const route = useRoute();
 
-// const firstTo = computed(() => {
-//   return {
-//     next: route.name === "wordleFour" ? "wordleFive" : "wordleFour",
-//     text: route.name === "wordleFour" ? "5글자" : "4글자",
-//   };
-// });
-// const secondTo = computed(() => {
-//   return {
-//     next: route.name === "wordleSix" ? "wordleFive" : "wordleSix",
-//     text: route.name === "wordleSix" ? "5글자" : "6글자",
-//   };
-// });
+const firstTo = computed(() => {
+  return {
+    next: route.name === "wordleFour" ? "wordleFive" : "wordleFour",
+    text: route.name === "wordleFour" ? "5글자" : "4글자",
+  };
+});
+const secondTo = computed(() => {
+  return {
+    next: route.name === "wordleSix" ? "wordleFive" : "wordleSix",
+    text: route.name === "wordleSix" ? "5글자" : "6글자",
+  };
+});
 
-// const routePage = (toName) => {
-//   router.push({ name: toName });
-// };
+const routePage = (toName) => {
+  router.push({ name: toName });
+};
 </script>
 
 <style lang="scss" scoped>
